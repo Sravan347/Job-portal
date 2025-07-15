@@ -92,7 +92,7 @@ const Profile = () => {
         </div>
 
         {/* Resume */}
-        <div className="my-6">
+        {/* <div className="my-6">
           <Label className="text-md font-semibold">Resume</Label>
           <div className="mt-1">
             {isResume ? (
@@ -109,7 +109,41 @@ const Profile = () => {
             )}
           </div>
         </div>
+      </div> */}
+
+      <div className="my-6">
+  <Label className="text-md font-semibold">Resume</Label>
+  <div className="mt-1">
+    {user?.profile?.resume ? (
+      <div className="flex flex-col space-y-1">
+        <p className="text-sm text-blue-700 break-all">{user.profile.resumeOriginalName}</p>
+
+        <div className="flex gap-4 text-sm">
+          {user.profile.resume.endsWith(".pdf") && (
+            <a
+              href={user.profile.resume}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-indigo-600 hover:underline"
+            >
+              View
+            </a>
+          )}
+
+          <a
+            href={`${user.profile.resume}?fl_attachment=${user.profile.resumeOriginalName}`}
+            className="text-green-600 hover:underline"
+          >
+            Download
+          </a>
+        </div>
       </div>
+    ) : (
+      <span className="text-gray-500 text-sm">NA</span>
+    )}
+  </div>
+</div>
+
 
       {/* Applied Jobs */}
       <div className="max-w-4xl mx-auto bg-white shadow-md rounded-2xl p-6 mb-10">
@@ -118,6 +152,7 @@ const Profile = () => {
       </div>
 
       <UpdateProfileDialog open={open} setOpen={setOpen} />
+    </div>
     </div>
   );
 };
